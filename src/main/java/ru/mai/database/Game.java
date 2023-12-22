@@ -1,4 +1,4 @@
-package database;
+package ru.mai.database;
 
 public class Game {
 

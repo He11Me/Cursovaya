@@ -1,18 +1,16 @@
-package game;
+package ru.mai.game;
 
-import game.ActionListenerForBring;
-import game.ActionListenerForPass;
-import game.ActionListenerForRestart;
+import ru.mai.consts.Consts;
+import ru.mai.database.GamePersistance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CardJframe extends JFrame {
 
     private JPanel panel = new JPanel();
     private JPanel panelForText = new JPanel();
+    GamePersistance gamePersistance = new GamePersistance();
 
     public CardJframe() {
         super("Карточная игра \"Очко\"");
@@ -44,12 +42,9 @@ public class CardJframe extends JFrame {
         pass.addActionListener(new ActionListenerForPass(cardsProcessing));
         restart.addActionListener(new ActionListenerForRestart(cardsProcessing));
 
-        close.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
+        close.addActionListener(e -> {
+            gamePersistance.deleteAllGames();
+            System.exit(0);
         });
     }
 }

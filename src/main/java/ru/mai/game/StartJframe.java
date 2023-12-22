@@ -1,8 +1,6 @@
-package game;
+package ru.mai.game;
 
-import consts.Consts;
-import game.CardJframe;
-import game.HistoryJframe;
+import ru.mai.consts.Consts;
 
 import javax.swing.*;
 import java.awt.*;

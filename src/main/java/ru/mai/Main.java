@@ -1,4 +1,6 @@
-import game.StartJframe;
+package ru.mai;
+
+import ru.mai.game.StartJframe;
 
 public class Main {
 
@@ -8,4 +10,3 @@ public class Main {
         startJframe.pack();
     }
 }
-

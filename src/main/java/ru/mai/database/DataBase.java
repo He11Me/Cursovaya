@@ -1,12 +1,10 @@
-package database;
+package ru.mai.database;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DataBase {
 
@@ -51,32 +49,6 @@ public class DataBase {
         return result;
     }
 
-        public Map<String, String > selectByNumberId(String nameId, String table, String... columnNames) {
-            Map<String, String> result = new HashMap<>();
-            String sql = """
-                   select %s
-                   from cursach.%s
-                   where numberId = '%s'
-                   """;
-            String names = Stream.of(columnNames).collect(Collectors.joining(", "));
-
-            String select = String.format(sql, names, table, nameId);
-            try (Connection connection = connect();
-                 Statement statement = connection.createStatement()) {
-                ResultSet set = statement.executeQuery(select);
-
-                while(set.next()) {
-                    for(String columnName : columnNames) {
-                        result.put(columnName, set.getString(columnName));
-                       // set.getObject(columnName);
-                    }
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-            return result;
-        }
-
     public void init() {
         createSchema();
         createTableGame();
@@ -102,8 +74,8 @@ public class DataBase {
 
         String sql = """
                 create table if not exists cursach.games (
-                    numberId text not null PRIMARY KEY,
-                    gameWinner INTEGER not null
+                    numberId serial PRIMARY KEY,
+                    gameWinner Text not null
                 )
                 """;
         execute(sql);

@@ -1,4 +1,4 @@
-package consts;
+package ru.mai.consts;
 
 public interface Consts {
 

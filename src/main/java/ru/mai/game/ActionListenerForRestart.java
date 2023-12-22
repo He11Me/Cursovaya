@@ -1,19 +1,18 @@
-package game;
+package ru.mai.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ActionListenerForPass implements ActionListener {
+public class ActionListenerForRestart implements ActionListener {
 
     private CardsProcessing label;
 
-    public ActionListenerForPass(CardsProcessing label) {
+    public ActionListenerForRestart(CardsProcessing label) {
         this.label = label;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        label.scoreOfPlayers();
-        label.getWinner();
+        label.restartGame();
     }
 }

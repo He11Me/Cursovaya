@@ -1,4 +1,4 @@
-package database;
+package ru.mai.database;
 
 import java.util.Properties;
 

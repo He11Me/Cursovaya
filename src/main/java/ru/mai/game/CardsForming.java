@@ -1,4 +1,6 @@
-package game;
+package ru.mai.game;
+
+import ru.mai.consts.Consts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,13 @@ public class CardsForming {
         if (Cards.isEmpty()) {
             Cards.add(new int[]{arr[0], arr[1]});
             checkCard(Cards, CardsNew, createRandomCard());
+            return;
         }
 
         if (CardsNew.isEmpty()) {
             CardsNew.add(new int[]{arr[0], arr[1]});
             checkCard(Cards, CardsNew, createRandomCard());
+            return;
         }
 
         if (Cards.size() == Consts.ONE) {
@@ -37,6 +41,7 @@ public class CardsForming {
                 }
             }
             checkCard(Cards, CardsNew, createRandomCard());
+            return;
         }
 
         if (CardsNew.size() == Consts.ONE) {
@@ -46,17 +51,21 @@ public class CardsForming {
                 }
             }
             checkCard(Cards, CardsNew, createRandomCard());
+            return;
         }
 
         if (cycleFor(Cards, arr)) {
             if (cycleFor(CardsNew, arr)) {
                 CardsNew.add(new int[]{arr[0], arr[1]});
-            } //else {
-                //checkCard(Cards, CardsNew, createRandomCard());
-            //}
-        } //else {
-            //checkCard(Cards, CardsNew, createRandomCard());
-        //}
+                return;
+            } else {
+                checkCard(Cards, CardsNew, createRandomCard());
+                return;
+            }
+        } else {
+            checkCard(Cards, CardsNew, createRandomCard());
+            return;
+        }
     }
 
     public boolean cycleFor(List<int[]> Cards, int[] arr) {
