@@ -20,17 +20,16 @@ public class CardsForming {
         return arr;
     }
 
-    public void checkCard(List<int[]> Cards, List<int[]> CardsNew, int[] arr) {
-
+    public void setStartCards(List<int[]> Cards, List<int[]> CardsNew, int[] arr) {
         if (Cards.isEmpty()) {
             Cards.add(new int[]{arr[0], arr[1]});
-            checkCard(Cards, CardsNew, createRandomCard());
+            setStartCards(Cards, CardsNew, createRandomCard());
             return;
         }
 
         if (CardsNew.isEmpty()) {
             CardsNew.add(new int[]{arr[0], arr[1]});
-            checkCard(Cards, CardsNew, createRandomCard());
+            setStartCards(Cards, CardsNew, createRandomCard());
             return;
         }
 
@@ -40,7 +39,7 @@ public class CardsForming {
                     Cards.add(new int[]{arr[0], arr[1]});
                 }
             }
-            checkCard(Cards, CardsNew, createRandomCard());
+            setStartCards(Cards, CardsNew, createRandomCard());
             return;
         }
 
@@ -50,9 +49,11 @@ public class CardsForming {
                     CardsNew.add(new int[]{arr[0], arr[1]});
                 }
             }
-            checkCard(Cards, CardsNew, createRandomCard());
+            setStartCards(Cards, CardsNew, createRandomCard());
             return;
         }
+    }
+    public void checkCard(List<int[]> Cards, List<int[]> CardsNew, int[] arr) {
 
         if (cycleFor(Cards, arr)) {
             if (cycleFor(CardsNew, arr)) {

@@ -14,7 +14,6 @@ public class CardJframe extends JFrame {
 
     public CardJframe() {
         super("Карточная игра \"Очко\"");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setBackground(Color.GRAY);
         this.setPreferredSize(new Dimension(Consts.THOUSAND, Consts.SEVEN_HUNDRED));

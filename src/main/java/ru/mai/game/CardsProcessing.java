@@ -10,7 +10,6 @@ public class CardsProcessing extends JLabel {
 
     CardsForming cardsForming = new CardsForming();
     GamePersistance gamePersistance = new GamePersistance();
-    HistoryMaker historyMaker = new HistoryMaker();
     private static int score;
     private static int scorePc;
     private int countOfGames = 1;
@@ -93,12 +92,19 @@ public class CardsProcessing extends JLabel {
         view();
     }
 
+    public void startCards(){
+        cardsForming.setStartCards(CardsForming.CardsPc, CardsForming.Cards,
+                cardsForming.createRandomCard());
+        scoreCalc(CardsForming.Cards);
+    }
+
     public void restartGame() {
 
         CardsForming.CardsPc.clear();
         CardsForming.Cards.clear();
         scoreCalcPc(CardsForming.CardsPc);
         scoreCalc(CardsForming.Cards);
+        startCards();
         view();
     }
 
@@ -109,20 +115,17 @@ public class CardsProcessing extends JLabel {
                     "\n Ваши карты: " + textCards + "Карты противника: " + textCardsPc);
             gamePersistance.createGame("Вы победили!", countOfGames);
             countOfGames++;
-            historyMaker.view();
         } else if ((scorePc > score && scorePc <= Consts.COUNT_FOR_WIN) ||
                 (score > Consts.COUNT_FOR_WIN && scorePc <= Consts.COUNT_FOR_WIN)) {
             setText("Ваши очки: " + score + " Очки противника: " + scorePc + " Вы проиграли!" +
                     "\n Ваши карты: " + textCards + "Карты противника: " + textCardsPc);
             gamePersistance.createGame("Вы проиграли!", countOfGames);
             countOfGames++;
-            historyMaker.view();
         } else {
             setText("Ваши очки: " + score + " Очки противника: " + scorePc + " Ничья!" +
                     "\n Ваши карты: " + textCards + "Карты противника: " + textCardsPc);
             gamePersistance.createGame("Ничья!", countOfGames);
             countOfGames++;
-            historyMaker.view();
         }
     }
 
